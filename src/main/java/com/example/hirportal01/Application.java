@@ -11,7 +11,6 @@ public class Application {
 
 		SpringApplication.run(Application.class, args);
 
- 		//DB database = new DB();
 		System.out.println();
 	}
 

@@ -1,31 +1,27 @@
 package com.example.hirportal01.controller;
 
-import com.example.hirportal01.entity.News;
+import com.example.hirportal01.dto.NewsDTO;
 
 
-import com.example.hirportal01.repository.NewsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.hirportal01.service.impl.NewsService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/")
+@RequestMapping(path = "/path")
 public class APIController {
 
+    private final NewsService newsService;
 
-    @Autowired
-    NewsRepository newsRepository;
-
-    public NewsRepository getNewsRepository() {
-        return newsRepository;
+    public APIController(NewsService newsService) {
+        this.newsService = newsService;
     }
 
-    @GetMapping(path = "/getusernames")
-    public List<News> getAllNew() {
-        List<News> news = newsRepository.findAll();
-        return news;
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<NewsDTO>> findAll() {
+        List<NewsDTO> news = newsService.findAll();
+        return ResponseEntity.ok().body(news);
     }
 }
