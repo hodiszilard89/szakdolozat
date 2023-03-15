@@ -1,14 +1,17 @@
 package com.example.hirportal01.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
 public class Law {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
     private String title;
+
+    @OneToMany(mappedBy = "law", cascade = CascadeType.ALL)
+    private List<LawMapperTable> lawMapperTable;
 
     public Law() {
     }
@@ -28,4 +31,13 @@ public class Law {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public List<LawMapperTable> getLawTable() {
+        return lawMapperTable;
+    }
+
+    public void setLawTable(List<LawMapperTable> lawMapperTable) {
+        this.lawMapperTable = lawMapperTable;
+    }
+
 }
