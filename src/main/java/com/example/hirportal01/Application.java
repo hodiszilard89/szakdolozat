@@ -1,20 +1,12 @@
 package com.example.hirportal01;
 
-import com.example.hirportal01.database.DB;
-//import org.springframework.beans.factory.annotation.Autowired;
+
+//import com.example.hirportal01.database.DB;
+//import com.example.hirportal01.database.DB;
+import com.example.hirportal01.entity.Law;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.jdbc.core.JdbcTemplate;
-//import org.springframework.web.bind.annotation.GetMapping;
-//
-//import javax.sql.DataSource;
-//import javax.xml.crypto.Data;
-//import java.io.PrintWriter;
-//
-//import java.sql.Connection;
-//import java.sql.SQLException;
-//;
+
 
 @SpringBootApplication
 public class Application {
@@ -22,7 +14,8 @@ public class Application {
 	public static void main(String[] args) {
 
 		SpringApplication.run(Application.class, args);
-		new DB();
+		new Law();
+ 		//DB database = new DB();
 		System.out.println();
 	}
 
