@@ -10,18 +10,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/path")
-public class APIController {
+public class NewsController {
 
     private final NewsService newsService;
 
-    public APIController(NewsService newsService) {
+    public NewsController(NewsService newsService) {
         this.newsService = newsService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "/news",method = RequestMethod.GET)
     public ResponseEntity<List<NewsDTO>> findAll() {
         List<NewsDTO> news = newsService.findAll();
         return ResponseEntity.ok().body(news);
+    }
+
+    @RequestMapping(path = "/news",method = RequestMethod.POST)
+    public ResponseEntity<NewsDTO> create(@RequestBody NewsDTO  newsDTO) {
+
+        return ResponseEntity.ok().body(newsService.create(newsDTO));
     }
 }

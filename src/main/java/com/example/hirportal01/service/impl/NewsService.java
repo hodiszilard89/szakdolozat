@@ -34,4 +34,13 @@ public class NewsService implements com.example.hirportal01.service.NewsService 
                 .collect(Collectors.toList());  //listába gyűjti a feldolgozott (átmappelt) elemeket
 
     }
+
+    @Override
+    public NewsDTO create(NewsDTO newsDTO) {
+         News resultNews =   newsRepository.save(
+                modelMapper.map(newsDTO,News.class)); //egylépésben alakítja át entityvé és menti el
+        return modelMapper.map(resultNews,NewsDTO.class);
+    }
+
+
 }
