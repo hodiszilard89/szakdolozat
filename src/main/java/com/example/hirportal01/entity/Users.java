@@ -1,5 +1,4 @@
 package com.example.hirportal01.entity;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,13 +7,26 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long  Id;
-    @OneToMany(mappedBy = "users")
-    private List<LawMapperTable> lawMapperTable;
 
-    @OneToMany(mappedBy = "users")
-    private List<LikeMapperTable> likeMapperTable;
+    @ManyToMany
+    @JoinTable(name = "user_laws",
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "law_id"))
+    private List<Law> laws;
+
+    @OneToMany(mappedBy = "writer")
+    private List<News> news;
+
+    @ManyToMany
+    @JoinTable(name = "user_news_likes",
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "news_id"))
+    private List<News> likes;
+
     private String chatName;
+
     private String firstName;
+
     private String secName;
 
     public Users() {
@@ -28,12 +40,12 @@ public class Users {
         Id = id;
     }
 
-    public List<LawMapperTable> getLawTable() {
-        return lawMapperTable;
+    public List<Law> getLaws() {
+        return laws;
     }
 
-    public void setLawTable(List<LawMapperTable> lawMapperTable) {
-        this.lawMapperTable = lawMapperTable;
+    public void setLaws(List<Law> laws) {
+        this.laws = laws;
     }
 
     public String getChatName() {
@@ -60,19 +72,19 @@ public class Users {
         this.secName = secName;
     }
 
-    public List<LawMapperTable> getLawMapperTable() {
-        return lawMapperTable;
+    public List<News> getNews() {
+        return news;
     }
 
-    public void setLawMapperTable(List<LawMapperTable> lawMapperTable) {
-        this.lawMapperTable = lawMapperTable;
+    public void setNews(List<News> news) {
+        this.news = news;
     }
 
-    public List<LikeMapperTable> getLikeMapperTable() {
-        return likeMapperTable;
+    public List<News> getLikes() {
+        return likes;
     }
 
-    public void setLikeMapperTable(List<LikeMapperTable> likeMapperTable) {
-        this.likeMapperTable = likeMapperTable;
+    public void setLikes(List<News> likes) {
+        this.likes = likes;
     }
 }

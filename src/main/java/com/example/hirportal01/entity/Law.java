@@ -8,10 +8,10 @@ public class Law {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
-    private String title;
 
-    @OneToMany(mappedBy = "law", cascade = CascadeType.ALL)
-    private List<LawMapperTable> lawMapperTable;
+    private String title;
+    @ManyToMany(mappedBy = "laws")
+    private List<Users> users;
 
     public Law() {
     }
@@ -32,12 +32,12 @@ public class Law {
         this.title = title;
     }
 
-    public List<LawMapperTable> getLawTable() {
-        return lawMapperTable;
+    public List<Users> getUsers() {
+        return users;
     }
 
-    public void setLawTable(List<LawMapperTable> lawMapperTable) {
-        this.lawMapperTable = lawMapperTable;
+    public void setUsers(List<Users> users) {
+        this.users = users;
     }
-
 }
+

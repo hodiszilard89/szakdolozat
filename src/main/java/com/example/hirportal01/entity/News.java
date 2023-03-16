@@ -5,28 +5,29 @@ import java.util.List;
 
 @Entity
 public class News {
-    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long  Id;
-    @Column(columnDefinition = "TEXT")
+    @Id
+    private Long   id;
     private String text;
-    @OneToMany
-    private List<Users> writer;
 
-    @OneToMany
-    private List<LikeMapperTable> likeMapperTable;
+    @ManyToMany(mappedBy = "likes")
+    private List<Users> likes;
 
-    private String image;
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private Users   writer;
+    private String imgPath;
     private String title;
+
     public News() {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getText() {
@@ -37,20 +38,20 @@ public class News {
         this.text = text;
     }
 
-    public List<Users> getWriter() {
+    public Users getWriter() {
         return writer;
     }
 
-    public void setWriter(List<Users> writer) {
+    public void setWriter(Users writer) {
         this.writer = writer;
     }
 
-    public String getImage() {
-        return image;
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     public String getTitle() {
@@ -61,11 +62,11 @@ public class News {
         this.title = title;
     }
 
-    public List<LikeMapperTable> getLikeMapperTable() {
-        return likeMapperTable;
+    public List<Users> getLikes() {
+        return likes;
     }
 
-    public void setLikeMapperTable(List<LikeMapperTable> likeMapperTable) {
-        this.likeMapperTable = likeMapperTable;
+    public void setLikes(List<Users> likes) {
+        this.likes = likes;
     }
 }
