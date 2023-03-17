@@ -1,7 +1,7 @@
 package com.example.hirportal01.controller;
 
 import com.example.hirportal01.dto.UsersDTO;
-import com.example.hirportal01.exception.InvalidUserException;
+import com.example.hirportal01.exception.InvalidEntityException;
 import com.example.hirportal01.service.impl.UsersServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,7 +74,7 @@ public class UsersController {
             for(FieldError fieldError:bindingResult.getFieldErrors()){
                 messages.add(fieldError.getField()+" = "+fieldError.getDefaultMessage());
             }
-            throw new InvalidUserException("invalid user",messages);
+            throw new InvalidEntityException("invalid user",messages);
         }
     }
 }

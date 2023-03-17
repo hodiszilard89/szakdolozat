@@ -2,10 +2,10 @@ package com.example.hirportal01.exception;
 
 import java.util.List;
 
-public class InvalidUserException  extends RuntimeException{
+public class InvalidEntityException extends RuntimeException{
     private List<String> messages;
 
-    public InvalidUserException(String message, List<String> messages) {
+    public InvalidEntityException(String message, List<String> messages) {
         super(message);
         this.messages = messages;
     }

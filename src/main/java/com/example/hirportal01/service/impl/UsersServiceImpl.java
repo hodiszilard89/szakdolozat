@@ -2,7 +2,7 @@ package com.example.hirportal01.service.impl;
 
 import com.example.hirportal01.dto.UsersDTO;
 import com.example.hirportal01.entity.Users;
-import com.example.hirportal01.exception.UserNotFoundException;
+import com.example.hirportal01.exception.EntityNotFoundException;
 import com.example.hirportal01.repository.UsersRepository;
 import com.example.hirportal01.service.UsersService;
 import org.modelmapper.ModelMapper;
@@ -58,7 +58,7 @@ public class UsersServiceImpl implements UsersService {
         Optional<Users> optionalUser = usersRepository.findById(id);
 
         if(optionalUser.isEmpty()){
-            throw new UserNotFoundException("User not found with id="+id);
+            throw new EntityNotFoundException("User not found with id="+id);
         }
 
         Users usersTemplates = modelMapper.map(usersDTO,Users.class);
@@ -73,7 +73,7 @@ public class UsersServiceImpl implements UsersService {
             usersRepository.delete(optionalUser.get());
         }
         else {
-            throw new RuntimeException();
+            throw new EntityNotFoundException("User");
         }
     }
 
