@@ -8,6 +8,7 @@ public class News {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long   id;
+    @Column(columnDefinition = "text")
     private String text;
 
     @ManyToMany(mappedBy = "likes")
@@ -16,6 +17,7 @@ public class News {
     @ManyToOne
     @JoinColumn(name = "users_id")
     private Users   writer;
+    @Column(columnDefinition = "text")
     private String imgPath;
     private String title;
 

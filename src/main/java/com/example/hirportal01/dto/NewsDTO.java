@@ -2,6 +2,7 @@ package com.example.hirportal01.dto;
 
 import com.example.hirportal01.entity.Users;
 
+import javax.persistence.Column;
 import java.util.List;
 
 
@@ -10,6 +11,7 @@ public class NewsDTO {
     }
 
     private Long   id;
+    @Column(columnDefinition = "text")
     private String text;
     private Users  writer;
     private String imgPath;
@@ -31,14 +33,6 @@ public class NewsDTO {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public Users getWriter() {
-        return writer;
-    }
-
-    public void setWriter(Users writer) {
-        this.writer = writer;
     }
 
     public String getImgPath() {
