@@ -30,7 +30,7 @@ public class LawController {
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<LawDTO>delete(@PathVariable Long id){
         lawService.delete(id);
-        return ResponseEntity.accepted().build();
+        return ResponseEntity.noContent().build();
     }
 
     @RequestMapping(method = RequestMethod.PUT)
@@ -40,6 +40,6 @@ public class LawController {
 
     @RequestMapping(path = "/{id}",method = RequestMethod.GET)
     public ResponseEntity<LawDTO> getById(@PathVariable Long id){
-        return ResponseEntity.ok().body(lawService.getById(id));
+        return ResponseEntity.ok().body(lawService.findById(id));
     }
 }

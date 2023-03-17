@@ -9,7 +9,7 @@ public interface LawService {
     List<LawDTO>findAll();
     void delete(Long id);
     LawDTO update(LawDTO lawDTO);
-    LawDTO getById(Long id);
+    LawDTO findById(Long id);
     }
 
 

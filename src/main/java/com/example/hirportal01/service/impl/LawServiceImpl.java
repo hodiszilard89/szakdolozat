@@ -60,7 +60,7 @@ public class LawServiceImpl implements LawService {
     }
 
     @Override
-    public LawDTO getById(Long id) {
+    public LawDTO findById(Long id) {
         Optional<Law> optionalLaw= lawRepository.findById(id);
         if (optionalLaw.isEmpty()){
             throw new RuntimeException();

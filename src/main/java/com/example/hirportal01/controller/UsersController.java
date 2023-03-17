@@ -40,9 +40,9 @@ public class UsersController {
 
     @RequestMapping(path="/{id}",method = RequestMethod.GET)
     public ResponseEntity<UsersDTO> findById(@PathVariable Long id) {  //
-        Optional<UsersDTO> anUser = usersService.findById(id);
-        if (anUser.isPresent()){
-            return ResponseEntity.ok(anUser.get());
+        Optional<UsersDTO> optionalUser = usersService.findById(id);
+        if (optionalUser.isPresent()){
+            return ResponseEntity.ok(optionalUser.get());
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }

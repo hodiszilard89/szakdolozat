@@ -1,8 +1,10 @@
 package com.example.hirportal01.dto;
 
+import com.example.hirportal01.entity.News;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 public class UsersDTO {
     private Long Id;
@@ -12,7 +14,7 @@ public class UsersDTO {
     private String firstName;
     @NotBlank(message = "nem lehet üres")
     private String secName;
-
+    private List<News> likes;
     public UsersDTO() {
     }
 
@@ -46,5 +48,13 @@ public class UsersDTO {
 
     public void setSecName(String secName) {
         this.secName = secName;
+    }
+
+    public List<News> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<News> likes) {
+        this.likes = likes;
     }
 }
