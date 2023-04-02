@@ -1,7 +1,9 @@
 package com.example.hirportal01.service.impl;
 
 import com.example.hirportal01.dto.NewsDTO;
+import com.example.hirportal01.dto.UsersDTO;
 import com.example.hirportal01.entity.News;
+import com.example.hirportal01.entity.Users;
 import com.example.hirportal01.repository.NewsRepository;
 import com.example.hirportal01.service.NewsService;
 import org.modelmapper.ModelMapper;
@@ -62,5 +64,21 @@ public class NewsServiceImpl implements NewsService {
         News news=newsRepository.save(modelMapper
                                       .map(newsDTO,News.class));
         return modelMapper.map(news,NewsDTO.class);
+    }
+
+    /**
+     * TODO
+     */
+    public List<UsersDTO> getLikers(Long id){
+        Optional<News> optionalNews = newsRepository.findById(id);
+        if (optionalNews.isPresent()){
+            News news = optionalNews.get();
+            List<Users> usersList =  news.getLikes();
+
+            return usersList.stream().map(users -> modelMapper
+                               .map(users,UsersDTO.class))
+                               .collect(Collectors.toList());
+        }
+        return null;
     }
 }

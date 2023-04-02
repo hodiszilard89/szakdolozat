@@ -1,5 +1,7 @@
 package com.example.hirportal01.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,9 +14,11 @@ public class News {
     private String text;
 
     @ManyToMany(mappedBy = "likes")
+    @JsonBackReference
     private List<Users> likes;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "users_id")
     private Users   writer;
     @Column(columnDefinition = "text")

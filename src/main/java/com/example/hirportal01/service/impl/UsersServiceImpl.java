@@ -33,7 +33,7 @@ public class UsersServiceImpl implements UsersService {
         List<Users> newsList = usersRepository.findAll();
 
         return newsList.stream()
-                .map(anNew -> modelMapper.map(anNew,UsersDTO.class))
+                .map(anUsers -> modelMapper.map(anUsers,UsersDTO.class))
                 .collect(Collectors.toList());  //listába gyűjti a feldolgozott (átmappelt) elemeket
 
     }

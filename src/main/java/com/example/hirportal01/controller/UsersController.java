@@ -66,8 +66,6 @@ public class UsersController {
     }
 
     private void checkErrors(BindingResult bindingResult){
-        LOGGER.info("Validation errors = {}",bindingResult.hasErrors());
-        LOGGER.info("errors = {}",bindingResult.getAllErrors());
         if(bindingResult.hasErrors()){
             List<String> messages = new ArrayList<>();
 

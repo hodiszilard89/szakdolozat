@@ -1,12 +1,14 @@
 package com.example.hirportal01.controller;
 
 import com.example.hirportal01.dto.NewsDTO;
+import com.example.hirportal01.dto.UsersDTO;
 import com.example.hirportal01.service.NewsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,5 +52,14 @@ public class NewsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 newsService.save(newsDTO)
                 );
+    }
+
+    @RequestMapping(path = "/like/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<UsersDTO>> printLineLikes(@PathVariable Long id){
+        List<UsersDTO> usersDTO=newsService.getLikers(id);
+        if (usersDTO!=null){
+            return ResponseEntity.ok(usersDTO);
+        };
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 }
